@@ -1,10 +1,10 @@
 import { Loader, LogOut } from 'lucide-react'
 import React, { useEffect } from 'react'
-// import { UseStore } from '../store/UseStore'
+import { UseStore } from '../store/UseStore'
 import { useNavigate } from 'react-router'
 
 const Dashboard = () => {
-  // const { logout, isLoading, loggedInUser } = UseStore()
+  const { logout, isLoading, loggedInUser } = UseStore()
   const navigate = useNavigate()
 
 
@@ -13,8 +13,9 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      // await logout()
-      // navigate('/login')
+      await logout()
+      navigate('/login')
+      window.location.reload()
     } catch (error) {
     console.log(" error:", error)
 

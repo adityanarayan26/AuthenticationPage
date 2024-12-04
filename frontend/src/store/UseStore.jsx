@@ -1,9 +1,10 @@
 import { url } from "@/config/url";
 import axios from "axios";
+import { redirect, useNavigate } from "react-router";
 import { create } from "zustand";
 
 export const UseStore = create((set) => ({
-
+  
     error: null,
     isLoading: false,
     isCheckingAuth: JSON.parse(localStorage.getItem("auth")) || null,
@@ -23,6 +24,7 @@ export const UseStore = create((set) => ({
     },
 
     login: async (email, password) => {
+        
         set({ isLoading: true, error: null });
         try {
 
@@ -31,7 +33,7 @@ export const UseStore = create((set) => ({
             console.log("🚀 ~ login: ~ response:", response)
             set({ isLoading: false, error: response.data.message ,loggedInUser:localStorage.setItem("user", response.data.user) });
             localStorage.setItem("auth", JSON.stringify(response.data.success));
-
+    
 
         } catch (error) {
             set({ error: error.response?.data?.message || "Error logging in", isLoading: false });

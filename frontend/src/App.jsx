@@ -1,29 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LoginPage from './pages/LoginPage'
 import { Navigate, Route, Routes } from 'react-router'
 import SignupPage from './pages/SignupPage'
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/Dashboard'
-import { UseStore } from './store/UseStore'
+
 
 const App = () => {
+  const status = localStorage.getItem("auth")
 
-  const { loggedInUser } = UseStore()
+
   const Protected = ({ children }) => {
-    return loggedInUser ? children : <Navigate to="/login" />
+    return status ? children : <Navigate to="/login" />
   }
-const RedirectToLoginIfSignedup = ({ children }) => {
-    return loggedInUser ? <Navigate to="/login" /> : children
-}
+  const LoggedInRedirect = ({ children }) => {
+    return status ? <Navigate to="/" /> : children;
+  }
 
 
 
   return (
     <div>
-      <Toaster position="bottom-right"/>
+      <Toaster position="bottom-right" />
       <Routes>
         <Route path='/' element={<Protected><Dashboard /></Protected>} />
-        <Route path='/login' element={<LoginPage />} />
+        <Route path="/login" element={<LoggedInRedirect><LoginPage /></LoggedInRedirect>} />
         <Route path='/create-account' element={<SignupPage />} />
       </Routes>
     </div>

@@ -10,10 +10,7 @@ import { Button } from '@/components/ui/button'
 import { CalendarIcon } from 'lucide-react'
 import { format } from "date-fns"
 import gsap from 'gsap'
-
-
-import toast from 'react-hot-toast';
-// import { UseStore } from '@/store/UseStore'
+import { UseStore } from '@/store/UseStore'
 import { useGSAP } from '@gsap/react'
 
 
@@ -44,7 +41,7 @@ const SignupPage = () => {
         password: '',
         confirmpassword: ''
     })
-    // const { signup, error, isLoading } = UseStore()
+    const { signup, error, isLoading } = UseStore()
     const handleChange = (e) => {
         const { name, value } = e.target
         setInputValue((prev) => ({
@@ -76,33 +73,33 @@ const SignupPage = () => {
 
     const handleSubmit = async (e) => {
 
-        // try {
-        //     e.preventDefault()
-        //     const validation = Validation({ fullname: inputValue.fullname, email: inputValue.email, dob: date, phone: inputValue.phn, password: inputValue.password, confirmpassword: inputValue.confirmpassword });
-        //     if(validation.error){
-        //         toast.error(validation.error, {
-        //             style: {
-        //                 borderRadius: '10px',
-        //                 background: '#333',
-        //                 color: '#fff',
-        //             }
-        //         })
-        //         return
-        //     }
-        //     await signup(inputValue.fullname, inputValue.email, date, inputValue.phn, inputValue.password, inputValue.confirmpassword)
+        try {
+            e.preventDefault()
+            const validation = Validation({ fullname: inputValue.fullname, email: inputValue.email, dob: date, phone: inputValue.phn, password: inputValue.password, confirmpassword: inputValue.confirmpassword });
+            if(validation.error){
+                toast.error(validation.error, {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    }
+                })
+                return
+            }
+            await signup(inputValue.fullname, inputValue.email, date, inputValue.phn, inputValue.password, inputValue.confirmpassword)
 
-        //     toast.success('account created successfully', {
-        //         style: {
-        //             borderRadius: '10px',
-        //             background: '#333',
-        //             color: '#fff',
-        //         }
-        //     })
-        //     navigate('/login')
-        // } catch (error) {
-        //     console.log("🚀 ~ handleSubmit ~ error:", error)
+            toast.success('account created successfully', {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                }
+            })
+            navigate('/login')
+        } catch (error) {
+            console.log("🚀 ~ handleSubmit ~ error:", error)
 
-        // }
+        }
 
     }
 
