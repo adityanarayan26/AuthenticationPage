@@ -1,17 +1,16 @@
 import gsap from 'gsap'
-import { Uselogin } from '../../hooks/Uselogin'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router'
 import { Loader } from 'lucide-react'
 import toast from 'react-hot-toast';
-import { UseStore } from '../store/UseStore'
+// import { UseStore } from '../store/UseStore'
 import { useGSAP } from '@gsap/react'
 
 const LoginPage = () => {
 
 
     const loginpagebg = useRef(null)
-    const { login, isLoading, isCheckingAuth, error } = UseStore();
+    // const { login, isLoading, isCheckingAuth, error } = UseStore();
 
     const navigate = useNavigate()
     useGSAP(() => {
@@ -60,38 +59,38 @@ const LoginPage = () => {
   
 
     const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            const validation = Validation({ email: inputValue.email, password: inputValue.password });
-            if (validation.error) {
-                toast.error(validation.error, {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                })
-                return
-            }
-            await login(inputValue.email, inputValue.password);
-            toast.success('Login successful', {
-                style: {
-                    borderRadius: '10px',
-                    background: '#333',
-                    color: '#fff',
-                },
-            })
-            navigate('/')
-        } catch (error) {
-            console.log("error:", error)
-            toast.error('invalid username or password', {
-                style: {
-                    borderRadius: '10px',
-                    background: '#333',
-                    color: '#fff',
-                },
-            })
-        }
+        // try {
+        //     e.preventDefault();
+        //     const validation = Validation({ email: inputValue.email, password: inputValue.password });
+        //     if (validation.error) {
+        //         toast.error(validation.error, {
+        //             style: {
+        //                 borderRadius: '10px',
+        //                 background: '#333',
+        //                 color: '#fff',
+        //             },
+        //         })
+        //         return
+        //     }
+        //     await login(inputValue.email, inputValue.password);
+        //     toast.success('Login successful', {
+        //         style: {
+        //             borderRadius: '10px',
+        //             background: '#333',
+        //             color: '#fff',
+        //         },
+        //     })
+        //     navigate('/')
+        // } catch (error) {
+        //     console.log("error:", error)
+        //     toast.error('invalid username or password', {
+        //         style: {
+        //             borderRadius: '10px',
+        //             background: '#333',
+        //             color: '#fff',
+        //         },
+        //     })
+        // }
 
     };
 
