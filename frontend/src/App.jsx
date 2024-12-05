@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import LoginPage from './pages/LoginPage'
-import { Navigate, Route, Routes } from 'react-router'
-import SignupPage from './pages/SignupPage'
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router';
 import { Toaster } from 'react-hot-toast';
-import Dashboard from './pages/Dashboard'
-
+import { UseStore } from './store/UseStore'; // Import your Zustand store
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
-  const status = localStorage.getItem("auth")
+  const isCheckingAuth = UseStore((state) => state.isCheckingAuth);
 
-
+  // Protect routes
   const Protected = ({ children }) => {
-    return status ? children : <Navigate to="/login" />
-  }
+    return isCheckingAuth ? children : <Navigate to="/login" />;
+  };
+
+  // Redirect logged-in users away from login/signup pages
   const LoggedInRedirect = ({ children }) => {
-    return status ? <Navigate to="/" /> : children;
-  }
-
-
+    return isCheckingAuth ? <Navigate to="/" /> : children;
+  };
 
   return (
     <div>
       <Toaster position="bottom-right" />
       <Routes>
-        <Route path='/' element={<Protected><Dashboard /></Protected>} />
+        <Route path="/" element={<Protected><Dashboard /></Protected>} />
         <Route path="/login" element={<LoggedInRedirect><LoginPage /></LoggedInRedirect>} />
-        <Route path='/create-account' element={<SignupPage />} />
+        <Route path="/create-account" element={<SignupPage />} />
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

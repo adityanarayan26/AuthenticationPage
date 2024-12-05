@@ -15,7 +15,7 @@ const Dashboard = () => {
     try {
       await logout()
       navigate('/login')
-      window.location.reload()
+
     } catch (error) {
     console.log(" error:", error)
 
