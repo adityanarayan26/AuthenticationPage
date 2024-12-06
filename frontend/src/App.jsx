@@ -7,7 +7,7 @@ import SignupPage from './pages/SignupPage';
 import Dashboard from './pages/Dashboard';
 
 const App = () => {
-  const isCheckingAuth = UseStore((state) => state.isCheckingAuth);
+  const {isCheckingAuth} = UseStore()
 
   // Protect routes
   const Protected = ({ children }) => {
@@ -25,7 +25,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Protected><Dashboard /></Protected>} />
         <Route path="/login" element={<LoggedInRedirect><LoginPage /></LoggedInRedirect>} />
-        <Route path="/create-account" element={<SignupPage />} />
+        <Route path="/create-account" element={<LoggedInRedirect><SignupPage /></LoggedInRedirect>} />
       </Routes>
     </div>
   );

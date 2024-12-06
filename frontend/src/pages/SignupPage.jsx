@@ -1,4 +1,4 @@
-import React, {  useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { Calendar } from "@/components/ui/calendar"
 import {
@@ -12,6 +12,7 @@ import { format } from "date-fns"
 import gsap from 'gsap'
 import { UseStore } from '@/store/UseStore'
 import { useGSAP } from '@gsap/react'
+import toast from 'react-hot-toast'
 
 
 
@@ -76,7 +77,8 @@ const SignupPage = () => {
         try {
             e.preventDefault()
             const validation = Validation({ fullname: inputValue.fullname, email: inputValue.email, dob: date, phone: inputValue.phn, password: inputValue.password, confirmpassword: inputValue.confirmpassword });
-            if(validation.error){
+
+            if (validation.error) {
                 toast.error(validation.error, {
                     style: {
                         borderRadius: '10px',
