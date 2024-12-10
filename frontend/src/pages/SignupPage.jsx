@@ -1,17 +1,10 @@
-<<<<<<< HEAD
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Calendar } from "@/components/ui/calendar";
-=======
-import React, { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router'
-import { Calendar } from "@/components/ui/calendar"
->>>>>>> a56740805dfd87db323079b5d500787d01171724
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-<<<<<<< HEAD
 } from "@/components/ui/popover";
 import { Button } from '@/components/ui/button';
 import { CalendarIcon } from 'lucide-react';
@@ -19,18 +12,6 @@ import { format } from "date-fns";
 import gsap from 'gsap';
 import toast from 'react-hot-toast';
 import { useGSAP } from '@gsap/react';
-=======
-} from "@/components/ui/popover"
-import { Button } from '@/components/ui/button'
-import { CalendarIcon } from 'lucide-react'
-import { format } from "date-fns"
-import gsap from 'gsap'
-import { UseStore } from '@/store/UseStore'
-import { useGSAP } from '@gsap/react'
-import toast from 'react-hot-toast'
-
-
->>>>>>> a56740805dfd87db323079b5d500787d01171724
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -42,7 +23,7 @@ const SignupPage = () => {
         }, {
             filter: 'blur(0px)',
             duration: 1,
-            ease: 'sine.inOut'
+            ease: 'sine.inOut',
         });
     }, []);
 
@@ -52,20 +33,15 @@ const SignupPage = () => {
         email: '',
         phn: '',
         password: '',
-        confirmpassword: ''
-<<<<<<< HEAD
+        confirmpassword: '',
     });
 
-=======
-    })
-    const { signup, error, isLoading } = UseStore()
->>>>>>> a56740805dfd87db323079b5d500787d01171724
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInputValue((prev) => ({
             ...prev,
             [name]: value,
-            date: date
+            date: date,
         }));
     };
 
@@ -87,86 +63,98 @@ const SignupPage = () => {
     };
 
     const signup = async (fullname, email, dob, phone, password, confirmpassword) => {
-        // Implement your signup logic here, e.g., API call to your backend
-        // For demonstration, we'll just log the values
         console.log('Signup details:', { fullname, email, dob, phone, password, confirmpassword });
-        // Simulate a successful signup
         return new Promise((resolve) => setTimeout(resolve, 1000));
     };
 
     const handleSubmit = async (e) => {
-<<<<<<< HEAD
         try {
             e.preventDefault();
-            const validation = Validation({ fullname: inputValue.fullname, email: inputValue.email, dob: date, phone: inputValue.phn, password: inputValue.password, confirmpassword: inputValue.confirmpassword });
-=======
+            const validation = Validation({
+                fullname: inputValue.fullname,
+                email: inputValue.email,
+                dob: date,
+                phone: inputValue.phn,
+                password: inputValue.password,
+                confirmpassword: inputValue.confirmpassword,
+            });
 
-        try {
-            e.preventDefault()
-            const validation = Validation({ fullname: inputValue.fullname, email: inputValue.email, dob: date, phone: inputValue.phn, password: inputValue.password, confirmpassword: inputValue.confirmpassword });
-
->>>>>>> a56740805dfd87db323079b5d500787d01171724
             if (validation.error) {
                 toast.error(validation.error, {
                     style: {
                         borderRadius: '10px',
                         background: '#333',
                         color: '#fff',
-                    }
-<<<<<<< HEAD
+                    },
                 });
                 return;
             }
-            await signup(inputValue.fullname, inputValue.email, date, inputValue.phn, inputValue.password, inputValue.confirmpassword);
-            toast.success('Account created successfully', {
-=======
-                })
-                return
-            }
-            await signup(inputValue.fullname, inputValue.email, date, inputValue.phn, inputValue.password, inputValue.confirmpassword)
 
-            toast.success('account created successfully', {
->>>>>>> a56740805dfd87db323079b5d500787d01171724
+            await signup(
+                inputValue.fullname,
+                inputValue.email,
+                date,
+                inputValue.phn,
+                inputValue.password,
+                inputValue.confirmpassword
+            );
+
+            toast.success('Account created successfully', {
                 style: {
                     borderRadius: '10px',
                     background: '#333',
                     color: '#fff',
-                }
-<<<<<<< HEAD
+                },
             });
+
             navigate('/login');
         } catch (error) {
-            console.log("🚀 ~ handleSubmit ~ error:", error);
+            console.error("Error during signup:", error);
         }
     };
-=======
-            })
-            navigate('/login')
-        } catch (error) {
-            console.log("🚀 ~ handleSubmit ~ error:", error)
-
-        }
-
-    }
-
->>>>>>> a56740805dfd87db323079b5d500787d01171724
 
     return (
-        <div className='h-screen w-full flex gap-x-5 items-center sm:p-5' ref={signuppagebg}>
-            <div className='h-full w-[50vw] hidden sm:block rounded-xl object-cover object-center' style={{ backgroundImage: `url('/images/signupimg.jpg')` }}></div>
-            <div id='form' className='h-full border lg:w-[50vw] w-full px-3 sm:px-5 text-base lg:px-20 sm:rounded-xl shadow-lg flex flex-col justify-center'>
-                <h1 className='capitalize font-bold text-2xl'>Create an account</h1>
-                <h2 className='capitalize font-medium text-base'>Enter your details below to create an account and get started</h2>
-                <form action="" className='grid grid-cols-2 grid-rows-4 gap-x-3 mt-5' onSubmit={handleSubmit}>
-                    <div className='flex flex-col'>
+        <div className="h-screen w-full flex gap-x-5 items-center sm:p-5" ref={signuppagebg}>
+            <div
+                className="h-full w-[50vw] hidden sm:block rounded-xl object-cover object-center"
+                style={{ backgroundImage: `url('/images/signupimg.jpg')` }}
+            ></div>
+            <div
+                id="form"
+                className="h-full border lg:w-[50vw] w-full px-3 sm:px-5 text-base lg:px-20 sm:rounded-xl shadow-lg flex flex-col justify-center"
+            >
+                <h1 className="capitalize font-bold text-2xl">Create an account</h1>
+                <h2 className="capitalize font-medium text-base">
+                    Enter your details below to create an account and get started
+                </h2>
+                <form
+                    action=""
+                    className="grid grid-cols-2 grid-rows-4 gap-x-3 mt-5"
+                    onSubmit={handleSubmit}
+                >
+                    <div className="flex flex-col">
                         <label htmlFor="">Full Name</label>
-                        <input type="text" name='fullname' className='border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600' value={inputValue.fullname} onChange={handleChange} placeholder='John Doe' />
+                        <input
+                            type="text"
+                            name="fullname"
+                            className="border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600"
+                            value={inputValue.fullname}
+                            onChange={handleChange}
+                            placeholder="John Doe"
+                        />
                     </div>
-                    <div className='flex flex-col'>
+                    <div className="flex flex-col">
                         <label htmlFor="">Email</label>
-                        <input type="text" name='email' className='border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600' value={inputValue.email} onChange={handleChange} placeholder='example@gmail.com' />
+                        <input
+                            type="text"
+                            name="email"
+                            className="border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600"
+                            value={inputValue.email}
+                            onChange={handleChange}
+                            placeholder="example@gmail.com"
+                        />
                     </div>
-                    <div className='flex flex-col'>
+                    <div className="flex flex-col">
                         <label htmlFor="">Date of Birth</label>
                         <Popover>
                             <PopoverTrigger asChild>
@@ -191,21 +179,52 @@ const SignupPage = () => {
                             </PopoverContent>
                         </Popover>
                     </div>
-                    <div className='flex flex-col'>
+                    <div className="flex flex-col">
                         <label htmlFor="">Phone Number</label>
-                        <input type="number" name="phn" className='border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600' value={inputValue.phn} onChange={handleChange} placeholder='+918287076625' />
+                        <input
+                            type="number"
+                            name="phn"
+                            className="border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600"
+                            value={inputValue.phn}
+                            onChange={handleChange}
+                            placeholder="+918287076625"
+                        />
                     </div>
-                    <div className='flex flex-col'>
+                    <div className="flex flex-col">
                         <label htmlFor="">Password</label>
-                        <input type="password" name="password" className='border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600' value={inputValue.password} placeholder='John!#23' onChange={handleChange} />
+                        <input
+                            type="password"
+                            name="password"
+                            className="border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600"
+                            value={inputValue.password}
+                            placeholder="John!#23"
+                            onChange={handleChange}
+                        />
                     </div>
-                    <div className='flex flex-col'>
+                    <div className="flex flex-col">
                         <label htmlFor="">Confirm Password</label>
-                        <input type="password" name="confirmpassword" className='border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600' placeholder='John!#23' value={inputValue.confirmpassword} onChange={handleChange} />
+                        <input
+                            type="password"
+                            name="confirmpassword"
+                            className="border rounded-md pl-2 py-1 outline-none transition-all ease-linear duration-150 focus:border-blue-600"
+                            placeholder="John!#23"
+                            value={inputValue.confirmpassword}
+                            onChange={handleChange}
+                        />
                     </div>
-                    <div className='col-span-2 flex items-center px-5 justify-between gap-x-3'>
-                        <button type='submit' className='bg-[#013421] w-[70%] sm:w-1/2 py-1 text-white font-normal rounded-md'>Create account</button>
-                        <h1 className='font-sans font-medium'>Already have an account?<Link to={'/login'}><span className='text-[#FEB059] cursor-pointer'> Login</span></Link></h1>
+                    <div className="col-span-2 flex items-center px-5 justify-between gap-x-3">
+                        <button
+                            type="submit"
+                            className="bg-[#013421] w-[70%] sm:w-1/2 py-1 text-white font-normal rounded-md"
+                        >
+                            Create account
+                        </button>
+                        <h1 className="font-sans font-medium">
+                            Already have an account?
+                            <Link to={'/login'}>
+                                <span className="text-[#FEB059] cursor-pointer"> Login</span>
+                            </Link>
+                        </h1>
                     </div>
                 </form>
             </div>

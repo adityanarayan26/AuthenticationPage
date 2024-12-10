@@ -1,42 +1,28 @@
-<<<<<<< HEAD
 import React, { useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { loginUser } from '@/store/authActions';
-=======
-import gsap from 'gsap'
-import React, { useRef, useState } from 'react'
-import { Link, Navigate, redirect, useNavigate } from 'react-router'
-import { Loader } from 'lucide-react'
-import toast from 'react-hot-toast';
-import { UseStore } from '../store/UseStore'
-import { useGSAP } from '@gsap/react'
->>>>>>> a56740805dfd87db323079b5d500787d01171724
+import { UseStore } from '../store/UseStore';
+
+
 
 const LoginPage = () => {
-    const loginpagebg = useRef(null);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
-
-<<<<<<< HEAD
-=======
 
     const loginpagebg = useRef(null)
     const { login, isLoading, isCheckingAuth, error } = UseStore();
 
     const navigate = useNavigate()
->>>>>>> a56740805dfd87db323079b5d500787d01171724
+
     useGSAP(() => {
-        gsap.fromTo(
-            loginpagebg.current,
-            { filter: 'blur(2px)' },
-            { filter: 'blur(0px)', duration: 1, ease: 'sine.inOut' }
-        );
+        gsap.fromTo(loginpagebg.current, {
+            filter: 'blur(2px)',
+        }, {
+            filter: 'blur(0px)',
+            duration: 1,
+            ease: 'sine.inOut',
+        });
     }, []);
 
     const [inputValue, setInputValue] = useState({
@@ -52,11 +38,26 @@ const LoginPage = () => {
         }));
     };
 
-<<<<<<< HEAD
-    const handleSubmit = (e) => {
-        e.preventDefault();
-=======
-  
+
+
+    const Validation = ({ email, password }) => {
+        const errors = {};
+
+        if (!email) {
+            errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            errors.email = 'Email address is invalid';
+        }
+
+        if (!password) {
+            errors.password = 'Password is required';
+        } else if (password.length < 6) {
+            errors.password = 'Password must be at least 6 characters';
+        }
+
+        return { error: '' }
+    }
+
 
     const handleSubmit = async (e) => {
         try {
@@ -81,7 +82,7 @@ const LoginPage = () => {
                 },
             })
             navigate('/')
-        
+
         } catch (error) {
             console.log("error:", error)
             toast.error('invalid username or password', {
@@ -92,31 +93,7 @@ const LoginPage = () => {
                 },
             })
         }
->>>>>>> a56740805dfd87db323079b5d500787d01171724
-
-        // Dispatch login action
-        dispatch(loginUser(inputValue))
-            .unwrap()
-            .then(() => {
-                toast.success('Login successful', {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                });
-                navigate('/');
-            })
-            .catch(() => {
-                toast.error(error || 'Invalid username or password', {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                });
-            });
-    };
+    }
 
     return (
         <div className="h-screen w-full flex gap-x-5 items-center sm:p-5" ref={loginpagebg}>
@@ -160,9 +137,9 @@ const LoginPage = () => {
                         <button
                             type="submit"
                             className="bg-[#013421] w-full text-white font-normal flex justify-center py-1 rounded-md"
-                            disabled={loading}
+                            disabled={isLoading}
                         >
-                            {loading ? <Loader className="animate-spin" /> : 'Login'}
+                            {isLoading ? <Loader className="animate-spin" /> : 'Login'}
                         </button>
                         <h1 className="text-sm sm:text-base font-medium pt-3">
                             Do you have an account?
@@ -179,4 +156,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default LoginPage
