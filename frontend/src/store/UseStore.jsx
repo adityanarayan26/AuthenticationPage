@@ -17,6 +17,10 @@ export const UseStore = create((set) => ({
                 { fullname, email, dob, phone, password, confirmpassword },
                 { withCredentials: true }
             );
+            if (response) {
+                console.log('user signed in successfully ! redirecting...');
+
+            }
             set({ isLoading: false });
         } catch (error) {
             set({ error: error.response?.data?.message || "Error signing up", isLoading: false });
