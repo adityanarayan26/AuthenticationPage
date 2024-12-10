@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,6 +7,15 @@ import toast from 'react-hot-toast';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { loginUser } from '@/store/authActions';
+=======
+import gsap from 'gsap'
+import React, { useRef, useState } from 'react'
+import { Link, Navigate, redirect, useNavigate } from 'react-router'
+import { Loader } from 'lucide-react'
+import toast from 'react-hot-toast';
+import { UseStore } from '../store/UseStore'
+import { useGSAP } from '@gsap/react'
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
 
 const LoginPage = () => {
     const loginpagebg = useRef(null);
@@ -13,6 +23,14 @@ const LoginPage = () => {
     const dispatch = useDispatch();
     const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
 
+<<<<<<< HEAD
+=======
+
+    const loginpagebg = useRef(null)
+    const { login, isLoading, isCheckingAuth, error } = UseStore();
+
+    const navigate = useNavigate()
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
     useGSAP(() => {
         gsap.fromTo(
             loginpagebg.current,
@@ -34,8 +52,47 @@ const LoginPage = () => {
         }));
     };
 
+<<<<<<< HEAD
     const handleSubmit = (e) => {
         e.preventDefault();
+=======
+  
+
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const validation = Validation({ email: inputValue.email, password: inputValue.password });
+            if (validation.error) {
+                toast.error(validation.error, {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                })
+                return
+            }
+            await login(inputValue.email, inputValue.password);
+            toast.success('Login successful', {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            })
+            navigate('/')
+        
+        } catch (error) {
+            console.log("error:", error)
+            toast.error('invalid username or password', {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            })
+        }
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
 
         // Dispatch login action
         dispatch(loginUser(inputValue))

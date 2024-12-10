@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Calendar } from "@/components/ui/calendar";
+=======
+import React, { useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { Calendar } from "@/components/ui/calendar"
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
+<<<<<<< HEAD
 } from "@/components/ui/popover";
 import { Button } from '@/components/ui/button';
 import { CalendarIcon } from 'lucide-react';
@@ -12,6 +19,18 @@ import { format } from "date-fns";
 import gsap from 'gsap';
 import toast from 'react-hot-toast';
 import { useGSAP } from '@gsap/react';
+=======
+} from "@/components/ui/popover"
+import { Button } from '@/components/ui/button'
+import { CalendarIcon } from 'lucide-react'
+import { format } from "date-fns"
+import gsap from 'gsap'
+import { UseStore } from '@/store/UseStore'
+import { useGSAP } from '@gsap/react'
+import toast from 'react-hot-toast'
+
+
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -34,8 +53,13 @@ const SignupPage = () => {
         phn: '',
         password: '',
         confirmpassword: ''
+<<<<<<< HEAD
     });
 
+=======
+    })
+    const { signup, error, isLoading } = UseStore()
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInputValue((prev) => ({
@@ -71,9 +95,17 @@ const SignupPage = () => {
     };
 
     const handleSubmit = async (e) => {
+<<<<<<< HEAD
         try {
             e.preventDefault();
             const validation = Validation({ fullname: inputValue.fullname, email: inputValue.email, dob: date, phone: inputValue.phn, password: inputValue.password, confirmpassword: inputValue.confirmpassword });
+=======
+
+        try {
+            e.preventDefault()
+            const validation = Validation({ fullname: inputValue.fullname, email: inputValue.email, dob: date, phone: inputValue.phn, password: inputValue.password, confirmpassword: inputValue.confirmpassword });
+
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
             if (validation.error) {
                 toast.error(validation.error, {
                     style: {
@@ -81,22 +113,43 @@ const SignupPage = () => {
                         background: '#333',
                         color: '#fff',
                     }
+<<<<<<< HEAD
                 });
                 return;
             }
             await signup(inputValue.fullname, inputValue.email, date, inputValue.phn, inputValue.password, inputValue.confirmpassword);
             toast.success('Account created successfully', {
+=======
+                })
+                return
+            }
+            await signup(inputValue.fullname, inputValue.email, date, inputValue.phn, inputValue.password, inputValue.confirmpassword)
+
+            toast.success('account created successfully', {
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
                 style: {
                     borderRadius: '10px',
                     background: '#333',
                     color: '#fff',
                 }
+<<<<<<< HEAD
             });
             navigate('/login');
         } catch (error) {
             console.log("🚀 ~ handleSubmit ~ error:", error);
         }
     };
+=======
+            })
+            navigate('/login')
+        } catch (error) {
+            console.log("🚀 ~ handleSubmit ~ error:", error)
+
+        }
+
+    }
+
+>>>>>>> a56740805dfd87db323079b5d500787d01171724
 
     return (
         <div className='h-screen w-full flex gap-x-5 items-center sm:p-5' ref={signuppagebg}>
