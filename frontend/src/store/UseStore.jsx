@@ -19,7 +19,6 @@ export const UseStore = create((set) => ({
             );
             if (response) {
                 console.log('user signed in successfully ! redirecting...');
-
             }
             set({ isLoading: false });
         } catch (error) {

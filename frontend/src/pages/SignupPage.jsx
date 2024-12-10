@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import gsap from 'gsap';
 import toast from 'react-hot-toast';
 import { useGSAP } from '@gsap/react';
+import { UseStore } from '@/store/UseStore';
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -62,10 +63,7 @@ const SignupPage = () => {
         return { error: '' };
     };
 
-    const signup = async (fullname, email, dob, phone, password, confirmpassword) => {
-        console.log('Signup details:', { fullname, email, dob, phone, password, confirmpassword });
-        return new Promise((resolve) => setTimeout(resolve, 1000));
-    };
+    const { signup } = UseStore()
 
     const handleSubmit = async (e) => {
         try {
