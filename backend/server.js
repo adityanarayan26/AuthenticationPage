@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(cors({
-    origin: "https://authentication-app-primegurukul.adityadev.works",
+    origin: "https://authentication-page-9v8io8t2n-adityanarayan26s-projects.vercel.app",
     credentials: true
 }));
 app.use(express.json());
